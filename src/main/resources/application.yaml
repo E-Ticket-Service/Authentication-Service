@@ -1,15 +1,6 @@
-server:
+spring:
   application:
     name: auth-service
-  port: 8080
-  servlet:
-    context-path: /api-e-ticket
-
-spring:
-  port: 8080
-  servlet:
-    context-path: /api-e-ticket
-
 
   datasource:
     url: jdbc:postgresql://localhost:5432/e-ticket
@@ -37,4 +28,10 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog.yaml
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api-e-ticket
 
