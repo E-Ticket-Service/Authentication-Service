@@ -1,0 +1,40 @@
+server:
+  application:
+    name: auth-service
+  port: 8080
+  servlet:
+    context-path: /api-e-ticket
+
+spring:
+  port: 8080
+  servlet:
+    context-path: /api-e-ticket
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/e-ticket
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: Nurlan2006,
+    hikari:
+      minimum-idle: 2
+      idle-timeout: 40000
+      maximum-pool-size: 10
+      connection-timeout: 10000
+      keepalive-time: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog.yaml
+
