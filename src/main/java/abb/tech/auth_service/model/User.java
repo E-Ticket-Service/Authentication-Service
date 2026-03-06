@@ -27,7 +27,7 @@ public class User {
     @Column(length = 100)
     String lastname;
     @Column(unique = true,nullable = false)
-    String email;  //@Pattern (what sign it will be, etc., note these through annotation) in DTO
+    String email;
     @Column(name = "phone_number",unique = true,nullable = false)
     String phoneNumber;
     @Enumerated(EnumType.STRING)
