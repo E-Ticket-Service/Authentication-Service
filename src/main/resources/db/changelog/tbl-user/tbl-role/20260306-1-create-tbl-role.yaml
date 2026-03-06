@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: 20260303-1-create-tbl-user
+      id: 20260303-1-create-tbl-role
       author: nurlanaliyev
       changes:
         - createTable:
-            tableName: user
+            tableName: role
             columns:
               - column:
                   name: id
