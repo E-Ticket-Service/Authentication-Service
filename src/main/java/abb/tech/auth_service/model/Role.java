@@ -21,9 +21,13 @@ public class Role {
     Long id;
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @ManyToMany
+    @JoinTable(
+            name = "role-user",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    Set<User>users=new HashSet<>();
 
 
     @ManyToMany

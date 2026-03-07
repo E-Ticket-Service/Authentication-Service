@@ -8,7 +8,9 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -26,9 +28,9 @@ public class User {
     String name;
     @Column(length = 100)
     String lastname;
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     String email;
-    @Column(name = "phone_number",unique = true,nullable = false)
+    @Column(name = "phone_number", unique = true, nullable = false)
     String phoneNumber;
     @Enumerated(EnumType.STRING)
     UserRole role;
@@ -40,6 +42,6 @@ public class User {
     @CreationTimestamp
     LocalDateTime updateAt;
 
-    @OneToMany(mappedBy = "user",cascade = {CascadeType.DETACH,CascadeType.MERGE},fetch = FetchType.LAZY)
-    List<Role>roles;
+    @ManyToMany(mappedBy = "users")
+    Set<Role> roles = new HashSet<>();
 }
