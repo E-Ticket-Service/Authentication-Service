@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "permissions")
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "roles")
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -27,7 +28,7 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    Set<User>users=new HashSet<>();
+    Set<User> users = new HashSet<>();
 
 
     @ManyToMany
@@ -36,5 +37,5 @@ public class Role {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
-    Set<Permission> permissions=new HashSet<>();
+    Set<Permission> permissions = new HashSet<>();
 }

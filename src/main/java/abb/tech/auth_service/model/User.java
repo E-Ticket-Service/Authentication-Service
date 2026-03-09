@@ -1,7 +1,6 @@
 package abb.tech.auth_service.model;
 
-import abb.tech.auth_service.model.enums.UserRole;
-import abb.tech.auth_service.model.enums.UserStatus;
+import abb.tech.auth_service.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -9,7 +8,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,10 +17,12 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(of = "id")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     Long id;
     @Column(length = 100)
     String name;
@@ -32,8 +32,6 @@ public class User {
     String email;
     @Column(name = "phone_number", unique = true, nullable = false)
     String phoneNumber;
-    @Enumerated(EnumType.STRING)
-    UserRole role;
     @Enumerated(EnumType.STRING)
     UserStatus status;
     @CreationTimestamp
