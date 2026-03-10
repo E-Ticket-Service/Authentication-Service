@@ -3,7 +3,7 @@ spring:
     name: auth-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/e-ticket
+    url: jdbc:postgresql://${HOST}:${PORT:5432}/${DB_NAME}?currentSchema=${SCHEMA}
     driver-class-name: org.postgresql.Driver
     username: ${USERNAME}
     password: ${PAROL}
@@ -26,8 +26,8 @@ spring:
 
 
   liquibase:
-    enabled: false
-    change-log: classpath:db/changelog/db.changelog.yaml
+    enabled: true
+    change-log: classpath:db.changelog/db.changelog.yaml
 
 
 server:
