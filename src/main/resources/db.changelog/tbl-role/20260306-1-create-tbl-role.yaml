@@ -4,7 +4,7 @@ databaseChangeLog:
       author: nurlanaliyev
       changes:
         - createTable:
-            tableName: role
+            tableName: roles
             columns:
               - column:
                   name: id
