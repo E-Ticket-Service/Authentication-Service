@@ -30,6 +30,8 @@ spring:
     change-log: classpath:/db.changelog/db.changelog.yaml
 
 
+
+
 server:
   port: 8080
   servlet:

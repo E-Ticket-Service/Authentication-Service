@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "permissions")
+@Table(name = "permission")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
