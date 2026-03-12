@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20260313-4-create-tbl-role-user
+      author: nurlanaliyev
+      changes:
+        - createTable:
+            tableName: role_user
+            columns:
+              - column:
+                  name: role_id
+                  type: int
+
+              - column:
+                  name: user_id
+                  type: int
+
+        - addForeignKeyConstraint:
+            baseColumnNames: role_id
+            baseTableName: role_user
+            constraintName: fk_role_user_role
+            referencedColumnNames: id
+            referencedTableName: roles
+
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: role_user
+            constraintName: fk_role_user_user
+            referencedColumnNames: id
+            referencedTableName: users
