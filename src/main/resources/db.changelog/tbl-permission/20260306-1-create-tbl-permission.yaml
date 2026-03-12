@@ -4,7 +4,7 @@ databaseChangeLog:
       author: nurlanaliyev
       changes:
         - createTable:
-            tableName: permission
+            tableName: permissions
             columns:
               - column:
                   name: id
