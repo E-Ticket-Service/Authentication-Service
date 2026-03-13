@@ -1,13 +1,14 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/e-ticket
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/app-db?currentSchema=auth_db
     username: postgres
-    password: Nurlan2006,
-    hikari:
-      minimum-idle: 2
-      idle-timeout: 40000
-      maximum-pool-size: 10
-      connection-timeout: 10000
-      keepalive-time: 30000
+    password: postgres
+    driver-class-name: org.postgresql.Driver
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: auth_db
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
