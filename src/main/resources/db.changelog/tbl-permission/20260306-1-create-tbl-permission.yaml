@@ -16,3 +16,4 @@ databaseChangeLog:
               - column:
                   name: name
                   type: varchar(255)
+
