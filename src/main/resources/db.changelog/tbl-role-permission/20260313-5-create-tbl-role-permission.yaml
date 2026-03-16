@@ -8,11 +8,14 @@ databaseChangeLog:
             columns:
               - column:
                   name: role_id
-                  type: int
+                  type: bigint
+                  constraints:
+                    nullable: false
               - column:
                   name: permission_id
-                  type: int
-
+                  type: bigint
+                  constraints:
+                    nullable: false
 
         - addForeignKeyConstraint:
             baseColumnNames: role_id
@@ -20,6 +23,7 @@ databaseChangeLog:
             constraintName: fk_role_permissions_role
             referencedColumnNames: id
             referencedTableName: roles
+            onDelete: CASCADE
 
         - addForeignKeyConstraint:
             baseColumnNames: permission_id
@@ -27,3 +31,4 @@ databaseChangeLog:
             constraintName: fk_role_permissions_permission
             referencedColumnNames: id
             referencedTableName: permissions
+            onDelete: CASCADE
