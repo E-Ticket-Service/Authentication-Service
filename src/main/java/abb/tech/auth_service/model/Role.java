@@ -24,12 +24,7 @@ public class Role {
     @Column(unique = true, nullable = false)
     String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "role_user",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @ManyToMany(mappedBy = "roles")
     @Builder.Default
     Set<User> users = new HashSet<>();
 
