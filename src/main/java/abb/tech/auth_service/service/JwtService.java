@@ -1,5 +1,6 @@
 package abb.tech.auth_service.service;
 
+import abb.tech.auth_service.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -39,10 +40,16 @@ public class JwtService {
     }
 
     private String buildToken(UserDetails userDetails, long expiration) {
-        return Jwts.builder()
+        var builder = Jwts.builder()
                 .subject(userDetails.getUsername())
                 .claim("authorities", userDetails.getAuthorities().stream()
-                        .map(GrantedAuthority::getAuthority).toList())
+                        .map(GrantedAuthority::getAuthority).toList());
+
+        if (userDetails instanceof User user) {
+            builder.claim("userId", user.getId());
+        }
+
+        return builder
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSigningKey())

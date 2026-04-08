@@ -56,7 +56,12 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     LocalDateTime updatedAt;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
     @Builder.Default
     Set<Role> roles = new HashSet<>();
 
