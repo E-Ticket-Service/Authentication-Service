@@ -8,11 +8,11 @@ databaseChangeLog:
             columns:
               - column:
                   name: role_id
-                  type: int
+                  type: bigint
 
               - column:
                   name: user_id
-                  type: int
+                  type: bigint
 
         - addForeignKeyConstraint:
             baseColumnNames: role_id

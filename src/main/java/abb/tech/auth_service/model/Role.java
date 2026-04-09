@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
@@ -18,24 +18,22 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    @Column(unique = true, nullable = false)
     String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "role-user",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @ManyToMany(mappedBy = "roles")
+    @Builder.Default
     Set<User> users = new HashSet<>();
 
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_permissions",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id")
     )
+    @Builder.Default
     Set<Permission> permissions = new HashSet<>();
 }

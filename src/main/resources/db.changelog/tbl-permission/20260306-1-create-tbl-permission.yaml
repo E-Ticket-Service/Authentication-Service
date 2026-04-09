@@ -3,17 +3,19 @@ databaseChangeLog:
       id: 20260303-1-create-tbl-permission
       author: nurlanaliyev
       changes:
+        - createSequence:
+            sequenceName: permissions_seq
+            startValue: 1
+            incrementBy: 50
         - createTable:
             tableName: permissions
             columns:
               - column:
                   name: id
-                  type: int
-                  autoIncrement: true
+                  type: bigint
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: name
                   type: varchar(255)
-

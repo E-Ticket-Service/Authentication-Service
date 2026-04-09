@@ -38,3 +38,8 @@ server:
   servlet:
     context-path: /api-e-ticket
 
+jwt:
+  secret: "CHANGE_TO_32+_CHAR_RANDOM_SECRET"
+  access-exp: 900000    # 15 minutes
+  refresh-exp: 604800000 # 7 days
+

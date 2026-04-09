@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: int
+                  type: bigint
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -26,14 +26,16 @@ databaseChangeLog:
                     unique: true
                     nullable: false
               - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
                   name: phone_number
                   type: varchar(255)
                   constraints:
                     unique: true
                     nullable: false
-              - column:
-                  name: role
-                  type: varchar(255)
               - column:
                   name: status
                   type: varchar(255)
@@ -41,6 +43,8 @@ databaseChangeLog:
                   name: created_at
                   type: timestamp
                   defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
               - column:
                   name: updated_at
                   type: timestamp
