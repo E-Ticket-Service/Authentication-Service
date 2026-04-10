@@ -3,10 +3,10 @@ spring:
     name: auth-service
 
   datasource:
-    url: jdbc:postgresql://${HOST}:${PORT:5432}/${DB_NAME}?currentSchema=${SCHEMA}
+    url: jdbc:postgresql://${HOST:localhost}:${PORT:5433}/${DB_NAME:app-db}?currentSchema=${SCHEMA:auth_db}
     driver-class-name: org.postgresql.Driver
-    username: ${USERNAME}
-    password: ${PAROL}
+    username: ${USERNAME:postgres}
+    password: ${PASSWORD:postgres}
 
     hikari:
       minimum-idle: 2
@@ -17,29 +17,35 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
-        default_schema: ${SCHEMA}
+        default_schema: ${SCHEMA:auth_db}
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
 
 
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:/db.changelog/db.changelog.yaml
 
 
-
-
 server:
-  port: 8080
+  port: 8081
   servlet:
-    context-path: /api-e-ticket
+    context-path: /api/auth-service
 
 jwt:
   secret: "CHANGE_TO_32+_CHAR_RANDOM_SECRET"
   access-exp: 900000    # 15 minutes
   refresh-exp: 604800000 # 7 days
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
 
