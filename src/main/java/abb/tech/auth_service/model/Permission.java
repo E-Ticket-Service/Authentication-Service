@@ -1,5 +1,6 @@
 package abb.tech.auth_service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -24,5 +25,6 @@ public class Permission {
     String name;
 
     @ManyToMany(mappedBy = "permissions")
-    Set<Role>roles=new HashSet<>();
+    @JsonIgnore
+    Set<Role> roles = new HashSet<>();
 }

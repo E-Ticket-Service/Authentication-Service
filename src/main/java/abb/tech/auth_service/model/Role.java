@@ -1,5 +1,6 @@
 package abb.tech.auth_service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -26,6 +27,7 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     @Builder.Default
+    @JsonIgnore
     Set<User> users = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
