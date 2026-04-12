@@ -3,6 +3,7 @@ package abb.tech.auth_service.service;
 import abb.tech.auth_service.dto.AuthResponse;
 import abb.tech.auth_service.dto.LoginRequest;
 import abb.tech.auth_service.dto.RegisterRequest;
+import abb.tech.auth_service.dto.TokenRefreshRequest;
 import abb.tech.auth_service.enums.UserStatus;
 import abb.tech.auth_service.model.Role;
 import abb.tech.auth_service.model.User;
@@ -58,5 +59,27 @@ public class AuthService {
         String refreshToken = jwtService.generateRefreshToken(userDetails);
 
         return new AuthResponse(accessToken, refreshToken);
+    }
+
+    public AuthResponse refreshToken(TokenRefreshRequest request) {
+        String refreshToken = request.refreshToken();
+        String userEmail = jwtService.extractUsername(refreshToken);
+        String tokenType = jwtService.extractType(refreshToken);
+
+        if (!"refresh".equals(tokenType)) {
+            throw new RuntimeException("Invalid token type");
+        }
+
+        if (userEmail != null) {
+            User user = userRepository.findByEmail(userEmail)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            if (jwtService.isTokenValid(refreshToken, user)) {
+                String accessToken = jwtService.generateAccessToken(user);
+                String newRefreshToken = jwtService.generateRefreshToken(user);
+                return new AuthResponse(accessToken, newRefreshToken);
+            }
+        }
+        throw new RuntimeException("Invalid refresh token");
     }
 }

@@ -3,6 +3,7 @@ package abb.tech.auth_service.controller;
 import abb.tech.auth_service.dto.AuthResponse;
 import abb.tech.auth_service.dto.LoginRequest;
 import abb.tech.auth_service.dto.RegisterRequest;
+import abb.tech.auth_service.dto.TokenRefreshRequest;
 import abb.tech.auth_service.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,10 @@ public class AuthController {
     @PostMapping("/login")
     public AuthResponse login(@RequestBody LoginRequest request) {
         return authService.login(request);
+    }
+
+    @PostMapping("/refresh-token")
+    public AuthResponse refreshToken(@RequestBody TokenRefreshRequest request) {
+        return authService.refreshToken(request);
     }
 }
